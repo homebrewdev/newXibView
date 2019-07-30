@@ -12,6 +12,8 @@
 		DE6EC1CB22EED0930034416A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE6EC1C922EED0930034416A /* Main.storyboard */; };
 		DE6EC1CD22EED0960034416A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE6EC1CC22EED0960034416A /* Assets.xcassets */; };
 		DE6EC1D022EED0960034416A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE6EC1CE22EED0960034416A /* LaunchScreen.storyboard */; };
+		DE6EC1D822EED0B90034416A /* XibView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE6EC1D722EED0B90034416A /* XibView.xib */; };
+		DE6EC1DA22EED1000034416A /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6EC1D922EED1000034416A /* XibView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		DE6EC1CC22EED0960034416A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE6EC1CF22EED0960034416A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE6EC1D122EED0960034416A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE6EC1D722EED0B90034416A /* XibView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XibView.xib; sourceTree = "<group>"; };
+		DE6EC1D922EED1000034416A /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				DE6EC1C522EED0930034416A /* AppDelegate.swift */,
 				DE6EC1C722EED0930034416A /* ViewController.swift */,
 				DE6EC1C922EED0930034416A /* Main.storyboard */,
+				DE6EC1D722EED0B90034416A /* XibView.xib */,
+				DE6EC1D922EED1000034416A /* XibView.swift */,
 				DE6EC1CC22EED0960034416A /* Assets.xcassets */,
 				DE6EC1CE22EED0960034416A /* LaunchScreen.storyboard */,
 				DE6EC1D122EED0960034416A /* Info.plist */,
@@ -124,6 +130,7 @@
 			files = (
 				DE6EC1D022EED0960034416A /* LaunchScreen.storyboard in Resources */,
 				DE6EC1CD22EED0960034416A /* Assets.xcassets in Resources */,
+				DE6EC1D822EED0B90034416A /* XibView.xib in Resources */,
 				DE6EC1CB22EED0930034416A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE6EC1C822EED0930034416A /* ViewController.swift in Sources */,
+				DE6EC1DA22EED1000034416A /* XibView.swift in Sources */,
 				DE6EC1C622EED0930034416A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
