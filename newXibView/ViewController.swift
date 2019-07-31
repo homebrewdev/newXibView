@@ -12,11 +12,10 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var xibView: XibView!
     
-    private let activityIndicator = UIActivityIndicatorView(style: .gray)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        xibView.xibLabel.text = "Hello"
+
+        // выведем все параметры экрана нашего устройства
         printSafeAreaInsets()
         printAllScreenParameters()
     }
@@ -31,6 +30,7 @@ class ViewController: UIViewController {
         print("Safe area Низ = \(bottom)")
         print("Safe area Слева = \(left)")
         print("Safe area Справа = \(right)")
+        
     }
     
     private func printAllScreenParameters() {
@@ -38,8 +38,9 @@ class ViewController: UIViewController {
         let scale = UIScreen.main.scale
         let aspectRatio = UIScreen.main.currentMode?.pixelAspectRatio
         let size = UIScreen.main.currentMode?.size
-        print("Высота = \(height)")
-        print("Текущий режим: \(String(describing: aspectRatio))")
+
+        print("Высота UIScreen = \(height)")
+        print("Текущий режим(Aspect Ratio): \(String(describing: aspectRatio))")
         print("Size = \(String(describing: size))")
         print("Scale factor = \(scale)")
     }
