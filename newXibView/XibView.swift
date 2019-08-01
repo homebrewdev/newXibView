@@ -33,6 +33,9 @@ class XibView: UIView {
         contView.backgroundColor = .lightGray// серый фон это у нас контентВью Xiba
         contView.frame = self.bounds // берем размеры XibView
         
+        // узнаем текущий trait
+        
+        
         self.addSubview(contView)
        
         aView.frame = CGRect(x: 0,
@@ -41,7 +44,7 @@ class XibView: UIView {
                              height: contView.bounds.height/2 - 16
         )
         
-        bView.frame = CGRect(x: 20,
+        bView.frame = CGRect(x: 0,
                              y: 250,
                              width: contView.bounds.width/2 - 16,
                              height: contView.bounds.height/2 - 16)
@@ -56,8 +59,7 @@ class XibView: UIView {
         contView.addSubview(bView)
         contView.addSubview(cView)
         
-        
-        
+        // применяем к ним констрайнты
         makeConstraintsViewA()
         makeConstraintsViewB()
         makeConstraintsViewC()
@@ -66,6 +68,11 @@ class XibView: UIView {
         
         // добавляем кастомную label на view
         addLabelToXIB("Some label", aView)
+        
+        // добавим на вьюB кнопку
+//        let bButton = generateButton(title: "Button B")
+//        bButton.frame = CGRect(x: 16, y: 100, width: 50, height: 20)
+//        bView.addSubview(bButton)
         
 //        self.addSubview(contView)
 //        print("Superview = \(String(describing: contView.superview))")
@@ -102,7 +109,7 @@ class XibView: UIView {
                            toItem: contView,
                            attribute: .left,
                            multiplier: 1,
-                           constant: 33).isActive = true
+                           constant: 16).isActive = true
         
         NSLayoutConstraint(item: aView,
                            attribute: .right,
@@ -110,15 +117,15 @@ class XibView: UIView {
                            toItem: contView,
                            attribute: .right,
                            multiplier: 1,
-                           constant: -33).isActive = true
+                           constant: -16).isActive = true
         
         NSLayoutConstraint(item: aView,
-                           attribute: .bottom,
+                           attribute: .height,
                            relatedBy: .equal,
                            toItem: contView,
-                           attribute: .bottom,
-                           multiplier: 1,
-                           constant: -150).isActive = true
+                           attribute: .height,
+                           multiplier: 0.5,
+                           constant: 0).isActive = true
         
 //        // задаем высоту нашего зеленого вью
 //        NSLayoutConstraint(item: aView,
@@ -148,40 +155,28 @@ class XibView: UIView {
         // массив констраинтов
         var allConstraints: [NSLayoutConstraint] = []
         
+        //let halfHeight = self.bounds.height / 2 - 16
         // устанавливаем вертикальный констраинт
         let iconVerticalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-200-[bView(300)]",
+            withVisualFormat: "V:|-370-[bView(200)]",
             metrics: nil,
             views: views)
         allConstraints += iconVerticalConstraints
         
+        let bottomVerticalConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-[bView(200)]",
+            metrics: nil,
+            views: views)
+        allConstraints += bottomVerticalConstraints
+        
+        // горизонтальное расположение между aview и bView
         let viewBviewCHorizontalConstraints = NSLayoutConstraint.constraints(
             withVisualFormat: "|-[bView]-16-[cView]-|",
             metrics: nil,
             views: views)
         allConstraints += viewBviewCHorizontalConstraints
-//        // 4
-//        let nameLabelVerticalConstraints = NSLayoutConstraint.constraints(
-//            withVisualFormat: "V:|-23-[appNameLabel]",
-//            metrics: nil,
-//            views: views)
-//        allConstraints += nameLabelVerticalConstraints
-//        
-//        // 5
-//        let skipButtonVerticalConstraints = NSLayoutConstraint.constraints(
-//            withVisualFormat: "V:|-20-[skipButton]",
-//            metrics: nil,
-//            views: views)
-//        allConstraints += skipButtonVerticalConstraints
-//        
-//        // 6
-//        let topRowHorizontalConstraints = NSLayoutConstraint.constraints(
-//            withVisualFormat: "H:|-15-[iconImageView(30)]-[appNameLabel]-[skipButton]-15-|",
-//            metrics: nil,
-//            views: views)
-//        allConstraints += topRowHorizontalConstraints
-        
-        // 7
+
+        // gприменяем все констрайнты
         NSLayoutConstraint.activate(allConstraints)
 //        let views = ["contentView": self, "bView": bView, "aView": aView]
 //
@@ -213,7 +208,21 @@ class XibView: UIView {
     // с помощью Anchor
     func makeConstraintsViewC() {
         cView.backgroundColor = .red
-        cView.leftAnchor.constraint(equalTo: contView.leftAnchor).isActive = true
+        
+        cView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint(item: cView,
+                           attribute: .top,
+                           relatedBy: .equal,
+                           toItem: contView,
+                           attribute: .top,
+                           multiplier: 1,
+                           constant: 370).isActive = true
+        
+        cView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        cView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        //cView.leftAnchor.constraint(equalTo: contView.leftAnchor).isActive = true
+        
     }
     
     // создаем кастомную кнопку

@@ -16,22 +16,25 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         // выведем все параметры экрана нашего устройства
-        printSafeAreaInsets()
+        // printSafeAreaInsets()
         printAllScreenParameters()
+        // каждый поворот экрана будет происходить выяснение TraitCollection какое положение девайс
+        printTraitCollection()
     }
     
-    private func printSafeAreaInsets() {
-        let bottom = view.safeAreaInsets.bottom
-        let left = view.safeAreaInsets.left
-        let right = view.safeAreaInsets.right
-        let top = view.safeAreaInsets.top
-        
-        print("Safe area Верх = \(top)")
-        print("Safe area Низ = \(bottom)")
-        print("Safe area Слева = \(left)")
-        print("Safe area Справа = \(right)")
-        
-    }
+    
+//    private func printSafeAreaInsets() {
+//        let bottom = view.safeAreaInsets.bottom
+//        let left = view.safeAreaInsets.left
+//        let right = view.safeAreaInsets.right
+//        let top = view.safeAreaInsets.top
+//
+//        print("Safe area Верх = \(top)")
+//        print("Safe area Низ = \(bottom)")
+//        print("Safe area Слева = \(left)")
+//        print("Safe area Справа = \(right)")
+//
+//    }
     
     private func printAllScreenParameters() {
         let height = UIScreen.main.bounds.size.height
@@ -45,5 +48,9 @@ class ViewController: UIViewController {
         print("Scale factor = \(scale)")
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        printTraitCollection()
+    }
 }
 
