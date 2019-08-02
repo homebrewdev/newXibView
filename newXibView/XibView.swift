@@ -18,6 +18,7 @@ class XibView: UIView {
     let bView: UIView = UIView()
     let cView: UIView = UIView()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -38,21 +39,21 @@ class XibView: UIView {
         
         self.addSubview(contView)
        
-        aView.frame = CGRect(x: 0,
-                             y:0,
-                             width: contView.bounds.width/2 - 16,
-                             height: contView.bounds.height/2 - 16
-        )
+//        aView.frame = CGRect(x: 0,
+//                             y:0,
+//                             width: contView.bounds.width/2 - 16,
+//                             height: contView.bounds.height/2 - 16
+//        )
         
-        bView.frame = CGRect(x: 0,
-                             y: 250,
-                             width: contView.bounds.width/2 - 16,
-                             height: contView.bounds.height/2 - 16)
-        
-        cView.frame = CGRect(x: contView.bounds.width/2 + 8,
-                             y: contView.bounds.height/2 - 8,
-                             width: contView.bounds.width/2 - 16,
-                             height: contView.bounds.height/2 - 16)
+//        bView.frame = CGRect(x: 0,
+//                             y: 250,
+//                             width: contView.bounds.width/2 - 16,
+//                             height: contView.bounds.height/2 - 16)
+//
+//        cView.frame = CGRect(x: contView.bounds.width/2 + 8,
+//                             y: contView.bounds.height/2 - 8,
+//                             width: contView.bounds.width/2 - 16,
+//                             height: contView.bounds.height/2 - 16)
         
         // добавляем на contentView 3 наши view
         contView.addSubview(aView)
@@ -67,7 +68,11 @@ class XibView: UIView {
         addImageToXIB(bView)
         
         // добавляем кастомную label на view
-        addLabelToXIB("Some label", aView)
+        addLabelToXIB("View A", aView)
+        
+        addLabelToXIB("View B", bView)
+        
+        addLabelToXIB("View C", cView)
         
         // добавим на вьюB кнопку
 //        let bButton = generateButton(title: "Button B")
@@ -156,53 +161,34 @@ class XibView: UIView {
         var allConstraints: [NSLayoutConstraint] = []
         
         //let halfHeight = self.bounds.height / 2 - 16
-        // устанавливаем вертикальный констраинт
+        //устанавливаем вертикальный констраинт
         let iconVerticalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-370-[bView(200)]",
+            withVisualFormat: "V:|-[aView]-16-[bView(150)]",
             metrics: nil,
             views: views)
         allConstraints += iconVerticalConstraints
         
-        let bottomVerticalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-[bView(200)]",
+        let cViewVerticalConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-[aView]-16-[cView(150)]",
             metrics: nil,
             views: views)
-        allConstraints += bottomVerticalConstraints
+        allConstraints += cViewVerticalConstraints
+        
+//        let bottomVerticalConstraints = NSLayoutConstraint.constraints(
+//            withVisualFormat: "V:|-390-[bView]",
+//            metrics: nil,
+//            views: views)
+//        allConstraints += bottomVerticalConstraints
         
         // горизонтальное расположение между aview и bView
         let viewBviewCHorizontalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "|-[bView]-16-[cView]-|",
+            withVisualFormat: "|-16-[bView(150)]-[cView(150)]-16-|",
             metrics: nil,
             views: views)
         allConstraints += viewBviewCHorizontalConstraints
 
-        // gприменяем все констрайнты
+        // применяем все констрайнты
         NSLayoutConstraint.activate(allConstraints)
-//        let views = ["contentView": self, "bView": bView, "aView": aView]
-//
-//        let horizontalConstraints = NSLayoutConstraint.constraints(
-//            withVisualFormat: "H:[contentView]-(<=0)-[bView(100)]",
-//            options: NSLayoutConstraint.FormatOptions.alignAllCenterY,
-//            metrics: nil, views: views)
-        
-//        let verticalConstraints = NSLayoutConstraint.constraints(
-//            withVisualFormat: "V:[aView]-(<=100)-[bView(100)]",
-//            options: NSLayoutConstraint.FormatOptions.alignAllCenterX,
-//            metrics: nil, views: views)
-        
-//        let horizontalConstraints1 = NSLayoutConstraint.constraints(
-//            withVisualFormat: "V:[aView]-16-[bView]",
-//            options: NSLayoutConstraint.FormatOptions.alignAllCenterX,
-//            metrics: nil, views: views)
-        
-//        let verticalConstraints = NSLayoutConstraint.constraints(
-//            withVisualFormat: "V:[aView]-(<=0)-[bView(100)]",
-//            options: NSLayoutConstraint.FormatOptions.alignAllLeading,
-//            metrics: nil, views: views)
-        
-//        self.addConstraints(horizontalConstraints)
-//        self.addConstraints(verticalConstraints)
-        //self.addConstraint((horizontalConstraints1)
     }
     
     // с помощью Anchor
@@ -211,16 +197,24 @@ class XibView: UIView {
         
         cView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint(item: cView,
-                           attribute: .top,
-                           relatedBy: .equal,
-                           toItem: contView,
-                           attribute: .top,
-                           multiplier: 1,
-                           constant: 370).isActive = true
+//        NSLayoutConstraint(item: cView,
+//                           attribute: .height,
+//                           relatedBy: .equal,
+//                           toItem: contView,
+//                           attribute: .height,
+//                           multiplier: 0.4,
+//                           constant: 0).isActive = true
+//
+//        NSLayoutConstraint(item: cView,
+//                           attribute: .width,
+//                           relatedBy: .equal,
+//                           toItem: contView,
+//                           attribute: .width,
+//                           multiplier: 0.4,
+//                           constant: 0).isActive = true
         
-        cView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        cView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        cView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        cView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         //cView.leftAnchor.constraint(equalTo: contView.leftAnchor).isActive = true
         
     }
@@ -239,7 +233,7 @@ class XibView: UIView {
     // размещаем картинку
     func addImageToXIB(_ toView: UIView) {
         let imageView: UIImageView = UIImageView()
-        imageView.frame = CGRect(x: 16, y: 16, width: 150, height: 150)
+        imageView.frame = CGRect(x: 16, y: 16, width: 120, height: 120)
         let myPicture = UIImage(named: "i.jpeg")
         imageView.image = myPicture
         
@@ -259,8 +253,8 @@ class XibView: UIView {
     func addLabelToXIB(_ labelText: String, _ toView: UIView) {
         let lbl: UILabel = UILabel()
         lbl.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
-        lbl.backgroundColor = .green
-        lbl.textColor = .black
+        lbl.backgroundColor = .darkGray
+        lbl.textColor = .yellow
         lbl.textAlignment = .center
         lbl.text = labelText
         
